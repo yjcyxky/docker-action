@@ -8,6 +8,7 @@ REPOSITORY=$3
 REGISTRY=$4
 TAG=$5
 MARK_LATEST=$6
+SUBDIR=$7
 
 if [ -z $USERNAME ]; then
   echo 'Required username parameter'
@@ -32,6 +33,10 @@ fi
 IMAGE=$REPOSITORY:$TAG
 if [ -n "$REGISTRY" ]; then
   IMAGE=$REGISTRY/$IMAGE
+fi
+
+if [ ! -z "$SUBDIR" ]; then
+  cd $SUBDIR
 fi
 
 docker build -t $IMAGE .

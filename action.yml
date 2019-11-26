@@ -23,6 +23,9 @@ inputs:
   mark_latest:
     description: 'Mark the docker image as latest'
     required: false
+  subdir:
+    description: 'Build subdirectory'
+    required: false
 outputs:
   image:
     description: 'Tagged docker image'
@@ -36,3 +39,4 @@ runs:
     - ${{ inputs.registry }}
     - ${{ inputs.tag }}
     - ${{ inputs.mark_latest }}
+    - ${{ inputs.subdir }}
