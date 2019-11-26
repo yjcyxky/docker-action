@@ -43,7 +43,7 @@ docker build -t $IMAGE .
 docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 docker push $IMAGE
 
-if [ -z $MARK_LATEST || $MARK_LATEST == 'true' ]; then
+if [ -z $MARK_LATEST ] || [ $MARK_LATEST == 'true' ]; then
   docker tag $IMAGE $REPOSITORY:latest
   docker push $REPOSITORY:latest
 fi
