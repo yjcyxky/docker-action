@@ -19,6 +19,9 @@ If you didn't use dockerhub, pass registry hostname.
 ### `tag`
 Image tag. If you don't want to set, it sets default snapshot tag(current time).
 
+### `mark_latest`
+Default is true, If you don't want to mark the docker image as latest, you should pass false or any characters.
+
 ## Outputs
 
 ### `image`
