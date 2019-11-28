@@ -7,7 +7,7 @@ PASSWORD=$2
 REPOSITORY=$3
 REGISTRY=$4
 TAG=$5
-MARK_LATEST=$6
+FLAG=$6
 SUBDIR=$7
 
 if [ -z $USERNAME ]; then
@@ -41,11 +41,15 @@ fi
 
 docker build -t $IMAGE .
 docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
-docker push $IMAGE
 
-if [ -z $MARK_LATEST ] || [ $MARK_LATEST == 'true' ]; then
+if [ "$FLAG" == 'test' ]; then
+  echo "Just test, nothing will be pushed to Dockerhub"
+elif [ "$FLAG" == 'latest' ]; then
+  docker push $IMAGE
   docker tag $IMAGE $REPOSITORY:latest
   docker push $REPOSITORY:latest
+elif [ "$FLAG" == 'no-latest' ]; then
+  docker push $IMAGE
 fi
 
 echo ::set-output name=image::$IMAGE
