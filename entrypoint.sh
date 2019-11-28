@@ -44,7 +44,7 @@ docker login --username "$USERNAME" --password "$PASSWORD" $REGISTRY
 
 if [ "$FLAG" == 'test' ]; then
   echo "Just test, nothing will be pushed to Dockerhub"
-elif [ "$FLAG" == 'latest' ]; then
+elif [ "$FLAG" == 'latest' ] || [ -z "$FLAG" ]; then
   docker push $IMAGE
   docker tag $IMAGE $REPOSITORY:latest
   docker push $REPOSITORY:latest
